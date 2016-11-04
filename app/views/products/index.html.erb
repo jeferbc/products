@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Productos</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-offset-10">
+      <%= link_to 'Crear Producto',new_product_path, class:"btn btn-success"%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class = "table">
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Categorias</th>
+        <th>Opciones</th>
+        <% @products.each do |product|  %>
+          <tr>
+            <td><%=product.name%></td>
+            <td><%=product.price%></td>
+            <td><% product.categories.each.with_index do |category,index| %>
+                  <% if product.categories.size == index+1 %>
+                    <%= "#{category.name} " %>
+                  <% else %>
+                    <%= "#{category.name}, " %>
+                  <% end %>
+                <% end %></td>
+            <td><%= link_to 'Editar', edit_product_path(product) %> -
+            <%= link_to 'Remover', product, method: :delete, data: {confirm: 'Estas seguro de eliminar este producto?'} %>
+            </td>
+          </tr>
+        <% end %>
+
+      </table>
+    </div>
+  </div>
+</div>
