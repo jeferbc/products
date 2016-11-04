@@ -31,7 +31,6 @@ class ProductsController < ApplicationController
 
     params[:product][:category_id] ||= []
     @product.category_ids=params[:product][:category_id]
-    byebug
     if @product.update_attributes(product_params)
       flash[:notice] = "Store was successfully updated."
       redirect_to products_path
